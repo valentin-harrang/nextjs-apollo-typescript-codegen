@@ -1,0 +1,24 @@
+overwrite: true
+watch: true
+watchConfig:
+  usePolling: true
+  interval: 1000
+schema:
+  - https://popular-feline-42.hasura.app/v1/graphql:
+      headers:
+        'x-hasura-admin-secret': ZQTgQUbLocLjTw7iij0dHPD4HD16AkRw5gw428Ez8WsdmGgRFD5tVB8DC4VKBOXK
+documents: ['./pages/**/*.tsx', './pages/**/*.ts', './components/**/*.tsx', './components/**/*.ts', './graphql/**/*.ts', './types/**/*.ts']
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      skipTypename: false
+      withHooks: true
+      withHOC: false
+      withComponent: false
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
